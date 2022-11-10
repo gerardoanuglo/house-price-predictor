@@ -12,7 +12,7 @@ The data already came seperated into training and testing sets. Each dataset has
 
 ## Exploring the Data
 
-First I checked the correlation of the target variable ("SalePrice") with features I expected it to have a strong correlation with, such as LotArea, Neighborhood, HouseStyle, OverallQual, YearBuilt, KitchenQual, TotRmsAbvGrd, GrLivArea, GarageCars, and YearBuilt.
+First, I checked the correlation of features I expected to have a strong correlation with the target variable ("SalePrice"). Features such as LotArea, Neighborhood, HouseStyle, OverallQual, YearBuilt, KitchenQual, TotRmsAbvGrd, GrLivArea, GarageCars, and YearBuilt.
 
 OverallQual, KitchenQual, and GrLivArea showed a strong positive correlation with Salesprice. The other features mentioned above have a weak to no correlation to sales price.
 
@@ -22,19 +22,20 @@ OverallQual, KitchenQual, and GrLivArea showed a strong positive correlation wit
 
 <img width="408" alt="Screen Shot 2022-11-08 at 6 11 47 PM" src="https://user-images.githubusercontent.com/85320743/200720088-51a5d48b-b782-46f4-9bb2-2bf74c8b4c1b.png">
 
-There are 4 data points I'm concerned with. They are the houses with a GrLiveArea above 4000 sqft. The two with low sales price are outliers as they have a abnormally highly sqft in living area with a low sale price and do not follow the trend of the others.
+There are 4 data points I'm concerned with. They are the houses with a GrLiveArea above 4000 sqft. The two with low sales price are outliers as they have a abnormally highly amount of square footage with a low sale price. I will be removing these outliers later. 
 
 <img width="403" alt="Screen Shot 2022-11-08 at 6 12 15 PM" src="https://user-images.githubusercontent.com/85320743/200720170-ceac89f4-782f-4996-ba25-535757fa35c3.png">
 
-As shown in the graph, "Total Rooms Above Ground" has a weak positive correlation to SalePrice. Rooms include bedrooms, kitchen rooms, dinning rooms, living rooms, and even laundry rooms. I find this weak correlation surprising because in my experience the houses with more rooms tend to have a higher selling price. This is the case for many houses, but as seen in the graph above there are houses which don't follow this trend. It can be for poor condition of rooms, size of rooms, or total square footage.
+"Total Rooms Above Ground" has a weak positive correlation to SalePrice. Rooms include bedrooms, kitchen rooms, dinning rooms, living rooms, and even laundry rooms. I find this weak correlation surprising because in my experience the houses with more rooms tend to have a higher selling price. This is the case for many houses, but as seen in the graph above there are houses which don't follow this trend. It can be for poor condition of rooms, size of rooms, or total square footage.
 
-Now lets check the correlation among all features. This step is important because it will show other features highly correlated to SalePrice that we didn't initially expect to be important to SalePrice. This correlation matrix can also show us features highly correlated to one another because they express the same information. For these cases we will remove the redundant features and keep the features that best capture that characteristic of the house. 
+Now lets check the correlation among all features. This step is important because it will identify other features highly correlated to SalePrice that we didn't initially expect to be important to SalePrice. This correlation matrix can also show us features highly correlated to one another. For these cases I will remove the redundant features and keep the features that best capture the specific characteristic of the house. 
 
 <img width="669" alt="Screen Shot 2022-11-08 at 6 12 59 PM" src="https://user-images.githubusercontent.com/85320743/200720268-3bb04290-1609-4134-ad3d-7ffaec14b404.png">
 
 SalePrice is highly correlated with OverallQual, GrLiVArea, GarageCars/GarageArea. Moderatley correlated with Year Built, YearRemodAdd, Total BsmtSF, and FullBath.
 
-TotalBsmtSF and 1stFlrSF are highly correlated. GarageYrBlt, GarageCars, and GarageArea are highly correlated together. I could keep one feature that expresses the most important information, in this case GarageCars, about the general item while deleting the non essential features, such as GarageArea and GarageYrBlt. 
+TotalBsmtSF and 1stFlrSF are highly correlated to each other. GarageYrBlt, GarageCars, and GarageArea are highly correlated as well. I will keep one feature that expresses the most important information about the general item while deleting the non essential features. In the case for the Garage, I will keep GarageCars since it measures the size of the garage based on the number of cars that can fit in the area. I will delete GarageArea since it is a similar feature to GarageCars and I will also delete GarageYrBlt becuase of it's low correlation to SalePrice. The same logic will be applied to the Basement features.
+
 
 ## Preprocessing the Data
 
@@ -42,19 +43,19 @@ TotalBsmtSF and 1stFlrSF are highly correlated. GarageYrBlt, GarageCars, and Gar
 
 <img width="555" alt="Screen Shot 2022-11-08 at 2 47 52 PM" src="https://user-images.githubusercontent.com/85320743/200692637-afb86daf-ae68-4222-baf1-abdf7babf18b.png">
 
-There are 19 collumns that have null values. I will delete any column with more than 15% percent of null values. Columns "PoolQC", "MiscFeature", "Alley", "Fence", "FireplaceQU", and "LotFrontage" have to many null values for me to try any tricks to fill the missing data.
+There are 19 collumns that have null values. I will delete any column with more than 15% percent of null values. Columns "PoolQC", "MiscFeature", "Alley", "Fence", "FireplaceQU", and "LotFrontage" have to many null values for me to try any techniques to fill the missing data.
 
-From the remaining 13 features, there are two groups of features with the same amount of null values. After looking at each group, they express information about the garage or the basement. Some features seem redundent because the information is expressed through one key feature. Using GarageCars it expresses most important information about the garage, so we dont need the other features. This applies to basements as well.
+From the remaining 13 features, there are two groups of features with the same amount of null values. After looking at each group, they express information about the garage or the basement. As explained earlier I will keep one key feature from each group that expresses the most important information about the item of the house. 
 
-We will also consider MasVnr columns as non essential and remove it. As for the Electrical column we will remove the row with a null value.
+As for the Electrical column we will remove the row with a null value.
 
-To be quiet honest, my first attempt at creating a regression model I was struggling with the performace. The accuracy for my testing data was at 51%. After doing some research and some help from (insert name) and his notebook (insert notebook link), I realized I needed to make sure my target variable was normal. By normalizing my target variable I could develope a more accurate regression model.
+To be quiet honest, my first attempt at creating a regression model I was struggling with the performace. The accuracy for my testing data was at 51%. After doing some research I realized I needed to make sure my target variable was normal. By normalizing my target variable I could develope a more accurate regression model.
 
 ### Checking Target Variable for Normality
 
 <img width="467" alt="Screen Shot 2022-11-08 at 3 13 44 PM" src="https://user-images.githubusercontent.com/85320743/200696170-b63379e7-8812-4d93-ba28-3186d02f0bd6.png">
 
-SalePrice is not normal. It shows a normal distribution skewed to the right. Now we will transform SalePrice to enforce normality.
+SalePrice is not normal. It shows a normal distribution skewed to the right. We will transform SalePrice to enforce normality.
 
 <img width="502" alt="Screen Shot 2022-11-08 at 3 15 40 PM" src="https://user-images.githubusercontent.com/85320743/200696424-20f59d4f-426b-40c1-ad72-ab977a20b032.png">
 
