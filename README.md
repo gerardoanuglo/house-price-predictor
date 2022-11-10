@@ -9,8 +9,6 @@ Objective: Create a model to accurately predict house prices in Ames Iowa based 
 Data Source: [Kaggle's](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques) House Prices Competition Dataset
   
 The data already came seperated into training and testing sets. Each dataset has 80 features, but the training dataset has an extra column with the target variable. A total of 2,919 houses spilt evenly into each dataset. 
-    
-At the end shout out the notebooks that taught me some things and to micheal for giving me feedback
 
 ## Exploring the Data
 
