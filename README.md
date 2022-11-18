@@ -96,7 +96,7 @@ This next model went through the same process as before, it just has the top 15 
 
 <img width="750" alt="Screen Shot 2022-11-08 at 5 09 04 PM" src="https://user-images.githubusercontent.com/85320743/200711426-0312bd3a-d252-468b-b9ae-a7bd1909152e.png">
 
-Slightly better at about 87% test score! If I had more time I would tweak my model using different iterations of model parameters to optimize test score accuracy. 
+Slightly better at 86% test score! If I had more time I would tweak my model using different iterations of model parameters to optimize test score accuracy. 
 
 ## Computing My Predictions For The Original Test Dataset
 
