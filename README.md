@@ -108,7 +108,7 @@ After computing the predicted house prices, I expontalized the values to accurat
 
 <img width="612" alt="Screen Shot 2022-11-08 at 5 20 14 PM" src="https://user-images.githubusercontent.com/85320743/200712867-c9d04d5d-3314-4e98-8cd5-2a4164ac2891.png">
 
-Lastly, I will create a csv file of the predicted house values and their corresponding house Id. 
+Lastly, I will create a csv file containing the predicted house values and their corresponding house Id. 
 
 <img width="663" alt="Screen Shot 2022-11-08 at 5 21 35 PM" src="https://user-images.githubusercontent.com/85320743/200713036-0397cdb0-674a-43a0-991d-b644aed32cf5.png">
 
