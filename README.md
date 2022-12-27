@@ -88,7 +88,7 @@ The first model is a Decision Tree Regressor Model. I will create this model usi
 
 <img width="601" alt="Screen Shot 2022-11-08 at 5 02 11 PM" src="https://user-images.githubusercontent.com/85320743/200710449-07c1cd45-1ab4-4149-a068-a8a4184eef30.png">
 
-A accuracy score for the testing set of about 85%, which is pretty good! The model only considered the top 10 features correlated to SalePrice. Now lets see if adding a few more features will improve the model. 
+A accuracy score of about 85% for the testing set, which is pretty good! The model only considered the top 10 features correlated to SalePrice. Now lets see if adding a few more features will improve the model. 
 
 ## Optimizing the Random Forest Regression Model
 
