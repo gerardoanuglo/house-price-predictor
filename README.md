@@ -32,9 +32,9 @@ Now let's check the correlation among all features. This step is important becau
 
 <img width="669" alt="Screen Shot 2022-11-08 at 6 12 59 PM" src="https://user-images.githubusercontent.com/85320743/200720268-3bb04290-1609-4134-ad3d-7ffaec14b404.png">
 
-SalePrice is highly correlated with OverallQual, GrLiVArea, GarageCars/GarageArea. Moderatley correlated with Year Built, YearRemodAdd, Total BsmtSF, and FullBath.
+SalePrice is highly correlated with OverallQual, GrLiVArea, GarageCars/GarageArea. Moderately correlated with Year Built, YearRemodAdd, Total BsmtSF, and FullBath.
 
-TotalBsmtSF and 1stFlrSF are highly correlated to each other. GarageYrBlt, GarageCars, and GarageArea are highly correlated as well. I will keep one feature that expresses the most important information about the general item while deleting the non essential features. In the case for the Garage, I will keep GarageCars since it measures the size of the garage based on the number of cars that can fit in the area. I will delete GarageArea since it is a similar feature to GarageCars and I will also delete GarageYrBlt becuase of it's low correlation to SalePrice. The same logic will be applied to the Basement features.
+TotalBsmtSF and 1stFlrSF are highly correlated to each other. GarageYrBlt, GarageCars, and GarageArea are highly correlated as well. I will keep one feature that expresses the most important information about the general item while deleting the non essential features. In the case of the Garage, I will keep GarageCars since it measures the size of the garage based on the number of cars that can fit in the area. I will delete GarageArea since it is a similar feature to GarageCars and I will also delete GarageYrBlt because of its low correlation to SalePrice. The same logic will be applied to the Basement features.
 
 
 ## Preprocessing the Data
@@ -43,13 +43,13 @@ TotalBsmtSF and 1stFlrSF are highly correlated to each other. GarageYrBlt, Garag
 
 <img width="555" alt="Screen Shot 2022-11-08 at 2 47 52 PM" src="https://user-images.githubusercontent.com/85320743/200692637-afb86daf-ae68-4222-baf1-abdf7babf18b.png">
 
-There are 19 collumns that have null values. I will delete any column with more than 15% percent of null values. Columns "PoolQC", "MiscFeature", "Alley", "Fence", "FireplaceQU", and "LotFrontage" have to many null values for me to try any techniques to fill the missing data.
+There are 19 columns that have null values. I will delete any column with more than 15% percent of null values. Columns "PoolQC", "MiscFeature", "Alley", "Fence", "FireplaceQU", and "LotFrontage'' have too many null values for me to try any techniques to fill the missing data.
 
 From the remaining 13 features, there are two groups of features with the same amount of null values. After looking at each group, they express information about the garage or the basement. As explained earlier I will keep one key feature from each group that expresses the most important information about the item of the house. 
 
 As for the Electrical column we will remove the row with a null value.
 
-To be quiet honest, my first attempt at creating a regression model I was struggling with the performace. The accuracy for my testing data was at 51%. After doing some research I realized I needed to make sure my target variable was normal. By normalizing my target variable I could develope a more accurate regression model.
+To be quite honest, my first attempt at creating a regression model I was struggling with the performance. The accuracy for my testing data was at 51%. After doing some research I realized I needed to make sure my target variable was normal. By normalizing my target variable I could develop a more accurate regression model.
 
 ### Checking Target Variable for Normality
 
@@ -59,16 +59,16 @@ SalePrice is not normal. It shows a normal distribution skewed to the right. We 
 
 <img width="502" alt="Screen Shot 2022-11-08 at 3 15 40 PM" src="https://user-images.githubusercontent.com/85320743/200696424-20f59d4f-426b-40c1-ad72-ab977a20b032.png">
 
-We hava a normal distribution curve and the line in the probability plot has become more straight, thus meaning we have a normal target variable. Now when I compute my predicted y values, I'll exponentialize my values to accurately represent house prices to scale. 
+We have a normal distribution curve and the line in the probability plot has become more straight, thus meaning we have a normal target variable. Now when I compute my predicted y values, I'll exponentialize my values to accurately represent house prices to scale. 
 
 ### Feature Selection
-I chose the top ten features correlated with SalePrice. I did this by obtaining the correlation coefficient for each feature, sorting the features in descending order of their correlation coefficient, and finally filtering the dataframe for only the top 10 features.
+I chose the top ten features correlated with SalePrice. I did this by obtaining the correlation coefficient for each feature, sorting the features in descending order of their correlation coefficient, and finally filtering the data frame for only the top 10 features.
 
 <img width="1002" alt="Screen Shot 2022-11-08 at 4 00 47 PM" src="https://user-images.githubusercontent.com/85320743/200702394-d72dcf80-c330-4f3e-9222-9b6fad1185ed.png">
 
-### Creating Train Test Spilts
+### Creating Train Test Splits
 
-With SalePrice as y and the rest of my cleaned data as x, I will create my training and testing data. We spilt the data now so both sets have no discrepancies from the preprocessing steps. After the model has been processed by using the training set, I'll test the model by making predictions against the testing set.
+With SalePrice as y and the rest of my cleaned data as x, I will create my training and testing data. We split the data now so both sets have no discrepancies from the preprocessing steps. After the model has been processed by using the training set, I'll test the model by making predictions against the testing set.
 
 <img width="609" alt="Screen Shot 2022-11-08 at 4 04 29 PM" src="https://user-images.githubusercontent.com/85320743/200703296-366cb404-c047-47de-997a-5d290c105ee0.png">
 
@@ -84,11 +84,11 @@ The first model is a Decision Tree Regressor Model. I will create this model usi
 
 <img width="632" alt="Screen Shot 2022-11-08 at 4 21 09 PM" src="https://user-images.githubusercontent.com/85320743/200705244-febe6052-64c6-42c0-842c-b303bc9fd03b.png">
 
-67 percent is not bad, considering I used one decision tree. Lets see how a ensemble regression model performs. I will try the Random Forest Regressor Model, which combines predictions from a specified number of decision trees and then averages the predictions to make a more accurate predicition.
+67 percent is not bad, considering I used one decision tree. Let's see how an ensemble regression model performs. I will try the Random Forest Regressor Model, which combines predictions from a specified number of decision trees and then averages the predictions to make a more accurate prediction.
 
 <img width="601" alt="Screen Shot 2022-11-08 at 5 02 11 PM" src="https://user-images.githubusercontent.com/85320743/200710449-07c1cd45-1ab4-4149-a068-a8a4184eef30.png">
 
-A accuracy score of about 85% for the testing set, which is pretty good! The model only considered the top 10 features correlated to SalePrice. Now lets see if adding a few more features will improve the model. 
+An accuracy score of about 85% for the testing set, which is pretty good! The model only considered the top 10 features correlated to SalePrice. Now lets see if adding a few more features will improve the model. 
 
 ## Optimizing the Random Forest Regression Model
 
@@ -104,7 +104,7 @@ Remember, up until this point the testing data for the models has been a subset 
 
 <img width="993" alt="Screen Shot 2022-11-08 at 5 18 23 PM" src="https://user-images.githubusercontent.com/85320743/200712629-b1c0ab9c-fc62-4467-8a38-8b7ef455f181.png">
 
-After computing the predicted house prices, I expontalized the values to accurately represent house prices to scale. 
+After computing the predicted house prices, I exponentialize the values to accurately represent house prices to scale. 
 
 <img width="612" alt="Screen Shot 2022-11-08 at 5 20 14 PM" src="https://user-images.githubusercontent.com/85320743/200712867-c9d04d5d-3314-4e98-8cd5-2a4164ac2891.png">
 
