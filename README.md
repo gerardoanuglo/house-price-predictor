@@ -8,13 +8,13 @@ Objective: Create a model to accurately predict house prices in Ames Iowa based 
   
 Data Source: [Kaggle's](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques) House Prices Competition Dataset
   
-The data already came seperated into training and testing sets. Each dataset has 80 features, but the training dataset has an extra column with the target variable. A total of 2,919 houses spilt evenly into each dataset. 
+The data already came separated into training and testing sets. Each dataset has 80 features, but the training dataset has an extra column with the target variable. A total of 2,919 houses split evenly into each dataset. 
 
 ## Exploring the Data
 
 First, I checked the correlation of features I expected to have a strong correlation with the target variable ("SalePrice"). Features such as LotArea, Neighborhood, HouseStyle, OverallQual, YearBuilt, KitchenQual, TotRmsAbvGrd, GrLivArea, GarageCars, and YearBuilt.
 
-OverallQual, KitchenQual, and GrLivArea showed a strong positive correlation with Salesprice. The other features mentioned above have a weak to no correlation to sales price.
+OverallQual, KitchenQual, and GrLivArea showed a strong positive correlation with SalesPrice. The other features mentioned above have a weak to no correlation to sales price.
 
 <img width="405" alt="Screen Shot 2022-11-08 at 6 11 06 PM" src="https://user-images.githubusercontent.com/85320743/200719964-5bb6b566-e00a-4434-ab26-129460c6117d.png">
 
@@ -22,13 +22,13 @@ OverallQual, KitchenQual, and GrLivArea showed a strong positive correlation wit
 
 <img width="408" alt="Screen Shot 2022-11-08 at 6 11 47 PM" src="https://user-images.githubusercontent.com/85320743/200720088-51a5d48b-b782-46f4-9bb2-2bf74c8b4c1b.png">
 
-There are 4 data points I'm concerned with. They are the houses with a GrLiveArea above 4000 sqft. The two with low sales price are outliers as they have a abnormally highly amount of square footage with a low sale price. I will be removing these outliers later. 
+There are 4 data points I'm concerned with. They are the houses with a GrLiveArea above 4000 sqft. The two with low sales price are outliers as they have an abnormally high amount of square footage with a low sale price. I will be removing these outliers later. 
 
 <img width="403" alt="Screen Shot 2022-11-08 at 6 12 15 PM" src="https://user-images.githubusercontent.com/85320743/200720170-ceac89f4-782f-4996-ba25-535757fa35c3.png">
 
-"Total Rooms Above Ground" has a weak positive correlation to SalePrice. Rooms include bedrooms, kitchen rooms, dinning rooms, living rooms, and even laundry rooms. I find this weak correlation surprising because in my experience the houses with more rooms tend to have a higher selling price. This is the case for many houses, but as seen in the graph above there are houses which don't follow this trend. It can be for poor condition of rooms, size of rooms, or total square footage.
+"Total Rooms Above Ground '' has a weak positive correlation to SalePrice. Rooms include bedrooms, kitchen rooms, dining rooms, living rooms, and even laundry rooms. I find this weak correlation surprising because in my experience the houses with more rooms tend to have a higher selling price. This is the case for many houses, but as seen in the graph above there are houses which don't follow this trend. It can be for poor condition of rooms, size of rooms, or total square footage.
 
-Now lets check the correlation among all features. This step is important because it will identify other features highly correlated to SalePrice that we didn't initially expect to be important to SalePrice. This correlation matrix can also show us features highly correlated to one another. For these cases I will remove the redundant features and keep the features that best capture the specific characteristic of the house. 
+Now let's check the correlation among all features. This step is important because it will identify other features highly correlated to SalePrice that we didn't initially expect to be important to SalePrice. This correlation matrix can also show us features highly correlated to one another. For these cases I will remove the redundant features and keep the features that best capture the specific characteristic of the house. 
 
 <img width="669" alt="Screen Shot 2022-11-08 at 6 12 59 PM" src="https://user-images.githubusercontent.com/85320743/200720268-3bb04290-1609-4134-ad3d-7ffaec14b404.png">
 
