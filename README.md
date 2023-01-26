@@ -113,5 +113,3 @@ Lastly, I will create a csv file containing the predicted house values and their
 <img width="663" alt="Screen Shot 2022-11-08 at 5 21 35 PM" src="https://user-images.githubusercontent.com/85320743/200713036-0397cdb0-674a-43a0-991d-b644aed32cf5.png">
 
 Thank you for taking the time and looking at my notebook.
-
-Its me
