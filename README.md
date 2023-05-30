@@ -1,4 +1,4 @@
-# house-price-predictor
+# Price Estimator
 
 ![Opening Image](https://github.com/gerardoanuglo/house-price-predictor/blob/main/images/opening_image.jpeg)
 
